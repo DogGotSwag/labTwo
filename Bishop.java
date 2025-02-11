@@ -1,49 +1,13 @@
+import java.util.Arrays;
 import java.util.Vector;
 
 //author Yahir Zapata
 
-public class Bishop { // change class name
-    private String piece_name;
-    private String color;
-    private char column;
-    private int row;
-
-    public Bishop() {
-
-    }
-
-    public Bishop(String bname, String bcolor, char bcolumn, int brow) {
-        piece_name = bname;
-        color = bcolor;
-        column = bcolumn;
-        row = brow;
-
-    }
-
-    public String getColor() {
-        return color;
-
-    }
-
-    public char getColumn() {
-        return column;
-
-    }
-
-    public int getRow() {
-        return row;
-
-    }
-
-    public void setColumn(char newColumn) {
-        this.column = newColumn;
-
-    }
-
-    public void setRow(int newRow) {
-        this.row = newRow;
-
-    }
+public class Bishop {  //change class name
+    public String pieceName;
+    public String color;
+    public String column;
+    public String row;
 
     public boolean inBounds(int[] coordinate) {
         int indexOne = coordinate[0];
@@ -64,78 +28,133 @@ public class Bishop { // change class name
         return newArray;
     }
 
-    public int[][] verifyTarget(char column, int row) {
-        String columns = "abcdefgh";
-        String rows = "87654321";
-
-        String position = "" + column + row;
-
+    public int[][] generateCoordinates() {
         Vector<int[]> vector = new Vector<>();
-        int indexOne = rows.indexOf(position.split("")[1]);
-        int indexTwo = columns.indexOf(position.split("")[0]);
 
-        // Top Left
-        int x = indexOne;
-        int y = indexTwo;
+        String letters = "abcdefgh";
+        String numbers = "87654321";
+
+        int rows = numbers.indexOf(this.row);
+        int cols = letters.indexOf(this.column);
+        
+        int x = rows;
+        int y = cols;
 
         while (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
             x = x + 1;
             y = y - 1;
 
-            int[] topLeft = { x, y };
+            int [] topLeft = {x, y};
 
             if (inBounds(topLeft) == true)
-                vector.add(topLeft);
+            vector.add(topLeft);
 
         }
 
-        // Top Right
-        x = indexOne;
-        y = indexTwo;
+        //Top Right
+        x = rows;
+        y = cols;
 
         while (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
             x = x + 1;
             y = y + 1;
 
-            int[] topRight = { x, y };
+            int [] topRight = {x, y};
 
             if (inBounds(topRight) == true)
-                vector.add(topRight);
+            vector.add(topRight);
 
         }
 
-        // Bottom Left
-        x = indexOne;
-        y = indexTwo;
+        //Bottom Left
+        x = rows;
+        y = cols;
 
         while (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
             x = x - 1;
             y = y - 1;
 
-            int[] bottomLeft = { x, y };
+            int [] bottomLeft = {x, y};
 
             if (inBounds(bottomLeft) == true)
-                vector.add(bottomLeft);
+            vector.add(bottomLeft);
 
         }
 
-        // Bottom Right
-        x = indexOne;
-        y = indexTwo;
+        //Bottom Right
+        x = rows;
+        y = cols;
 
         while (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
             x = x - 1;
             y = y + 1;
 
-            int[] bottomRight = { x, y };
+            int [] bottomRight = {x, y};
 
             if (inBounds(bottomRight) == true)
-                vector.add(bottomRight);
+            vector.add(bottomRight);
 
         }
 
         return vectorToArray(vector);
-
     }
 
+    public void setColumn(String col) {
+        this.column = col.toLowerCase();
+    }
+
+    public void setRow(String row) {
+        this.row = row;
+    }
+
+    public String getColumn() {
+        return this.column;
+    }
+
+    public String getRow() {
+        return this.row;
+    }
+
+    public String getColor() {
+        return this.color;
+    }
+
+    public Bishop() {
+        this.pieceName = "Bishop";
+        this.color = null;
+        this.column = null;
+        this.row = null;
+    }
+
+    public Bishop(String color, String col, String row) {
+        this.pieceName = "Bishop";
+        this.color = color.toLowerCase();
+        this.column = col.toLowerCase();
+        this.row = row;
+    }
+
+    public Bishop(String color, String col, String row, String pieceName) {
+        this.pieceName = pieceName;
+        this.color = color.toLowerCase();
+        this.column = col.toLowerCase();
+        this.row = row;
+    }
+
+     public boolean verifyTarget(String column, String row) {
+        String letters = "abcdefgh";
+        String numbers = "87654321";
+        int attackRows = numbers.indexOf(row);
+        int attackCols = letters.indexOf(column.toLowerCase());
+
+        int[] attackPosition = { attackRows, attackCols };
+        int[][] availableCoordinates = this.generateCoordinates();
+
+        for (int i = 0; i < availableCoordinates.length; i += 1) {
+            int[] curr = availableCoordinates[i];
+            if (Arrays.equals(curr, attackPosition)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

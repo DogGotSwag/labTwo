@@ -104,6 +104,9 @@ public class labTwoDD {
                 printVerify(piece, queenTemp.getColumn(), queenTemp.getRow(), target, canAttack);
                 break;
             case "ROOK":
+                Rook rookTemp = new Rook(color, coordinateCol, coordinateRow);
+                canAttack = rookTemp.verifyTarget(targetCol, targetRow);
+                printVerify(piece, rookTemp.getColumn(), rookTemp.getRow(), target, canAttack);
                 break;
             case "KNIGHT":
                 Knight knightTemp = new Knight(color, coordinateCol, coordinateRow);
@@ -111,8 +114,14 @@ public class labTwoDD {
                 printVerify(piece, knightTemp.getColumn(), knightTemp.getRow(), target, canAttack);
                 break;
             case "PAWN":
+                Pawn pawnTemp = new Pawn(color, coordinateCol, coordinateRow);
+                canAttack = pawnTemp.verifyTarget(targetCol, targetRow);
+                printVerify(piece, pawnTemp.getColumn(), pawnTemp.getRow(), target, canAttack);
                 break;
             case "BISHOP":
+                Bishop bishopTemp = new Bishop(color, coordinateCol, coordinateRow);
+                canAttack = bishopTemp.verifyTarget(targetCol, targetRow);
+                printVerify(piece, bishopTemp.getColumn(), bishopTemp.getRow(), target, canAttack);
                 break;
         }
 
