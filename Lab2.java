@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Lab2 {
 
-    public static void main (String [] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 
         Scanner userInput = new Scanner(System.in);
         char startLetter = '\0';
@@ -16,24 +16,27 @@ public class Lab2 {
         String rows = "87654321";
 
         while (true) {
-        
+
             // Loop used to get users starting piece
             while (true) {
                 // Loop to get users piece
                 while (true) {
-                    System.out.println("Please enter the piece you would like to move: (PAWN, ROOK, KNIGHT, BISHOP, QUEEN, and KING)");
+                    System.out.println(
+                            "Please enter the piece you would like to move: (PAWN, ROOK, KNIGHT, BISHOP, QUEEN, and KING)");
                     userPiece = userInput.nextLine();
 
                     userPiece = userPiece.toLowerCase();
-                
-                    if (userPiece.equals("pawn") || userPiece.equals("rook") || userPiece.equals("knight") || userPiece.equals("bishop") || userPiece.equals("queen") || userPiece.equals("king")) {
+
+                    if (userPiece.equals("pawn") || userPiece.equals("rook") || userPiece.equals("knight")
+                            || userPiece.equals("bishop") || userPiece.equals("queen") || userPiece.equals("king")) {
                         break;
-                    
+
                     }
 
-                    else{
-                        System.out.println("Error! Please enter a valid piece you would like to move: (PAWN, ROOK, KNIGHT, BISHOP, QUEEN, and KING)");
-        
+                    else {
+                        System.out.println(
+                                "Error! Please enter a valid piece you would like to move: (PAWN, ROOK, KNIGHT, BISHOP, QUEEN, and KING)");
+
                     }
 
                 }
@@ -62,9 +65,9 @@ public class Lab2 {
 
                     userStartCol = userStartCol.toLowerCase();
 
-                    if (userStartCol.length() == 1){
+                    if (userStartCol.length() == 1) {
                         char startCol = userStartCol.charAt(0);
-                            
+
                         if ((startCol >= 'a' && startCol <= 'h')) {
                             startLetter = startCol;
                             break;
@@ -73,7 +76,7 @@ public class Lab2 {
 
                         else {
                             System.out.println("Error! Please enter a valid column: (a - h)");
-        
+
                         }
 
                     }
@@ -107,14 +110,14 @@ public class Lab2 {
 
                         else {
                             System.out.println("Error! Please enter a valid number: (1 - 8)");
-                
+
                         }
 
                     }
 
                     else {
                         System.out.println("Error! Please enter only one digit: (1 - 8)");
-            
+
                     }
 
                 }
@@ -132,9 +135,9 @@ public class Lab2 {
 
                     userEndCol = userEndCol.toLowerCase();
 
-                    if (userEndCol.length() == 1){
+                    if (userEndCol.length() == 1) {
                         char endCol = userEndCol.charAt(0);
-                            
+
                         if ((endCol >= 'a' && endCol <= 'h')) {
                             endLetter = endCol;
                             break;
@@ -143,7 +146,7 @@ public class Lab2 {
 
                         else {
                             System.out.println("Error! Please enter a valid column: (a - h)");
-        
+
                         }
 
                     }
@@ -177,14 +180,14 @@ public class Lab2 {
 
                         else {
                             System.out.println("Error! Please enter a number: (1 - 8)");
-                
+
                         }
 
                     }
 
                     else {
                         System.out.println("Error! Please enter only one digit: (1 - 8)");
-            
+
                     }
 
                 }
@@ -211,25 +214,32 @@ public class Lab2 {
 
                             int[][] availableCoordinates = temp.verifyTarget(temp.getColumn(), temp.getRow());
 
-                            int indexOne = rows.indexOf(String.valueOf(endNumber)); // We get the index coordinate of the move the user inputted
+                            int indexOne = rows.indexOf(String.valueOf(endNumber)); // We get the index coordinate of
+                                                                                    // the move the user inputted
                             int indexTwo = columns.indexOf(endLetter);
 
-                            int [] move = {indexOne, indexTwo};
+                            int[] move = { indexOne, indexTwo };
 
-                            for (int j = 0; j < availableCoordinates.length; j++) { // We go through the available coordinates and check if the user move is in there, boolean (possible) will be changed to true if found
+                            for (int j = 0; j < availableCoordinates.length; j++) { // We go through the available
+                                                                                    // coordinates and check if the user
+                                                                                    // move is in there, boolean
+                                                                                    // (possible) will be changed to
+                                                                                    // true if found
                                 if (Arrays.equals(move, availableCoordinates[j])) {
                                     possible = true;
                                     break;
-                
+
                                 }
-                
+
                             }
 
                             if (possible)
-                                System.out.println(userPiece + " at " + temp.getColumn() + ", " + temp.getRow() + " can move to " + endLetter + ", " + endNumber);
+                                System.out.println(userPiece + " at " + temp.getColumn() + ", " + temp.getRow()
+                                        + " can move to " + endLetter + ", " + endNumber);
 
                             else
-                                System.out.println(userPiece + " at " + temp.getColumn() + ", " + temp.getRow() + " can't move to " + endLetter + ", " + endNumber);
+                                System.out.println(userPiece + " at " + temp.getColumn() + ", " + temp.getRow()
+                                        + " can't move to " + endLetter + ", " + endNumber);
 
                             break;
 
@@ -241,7 +251,8 @@ public class Lab2 {
 
                     }
 
-                    System.out.println("Would you like to verify another position for your piece using your original position: (YES or NO)");
+                    System.out.println(
+                            "Would you like to verify another position for your piece using your original position: (YES or NO)");
                     String switchPos = userInput.nextLine();
 
                     switchPos = switchPos.toLowerCase();

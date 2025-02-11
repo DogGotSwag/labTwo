@@ -21,6 +21,11 @@ public class labTwoDD {
         NO
     }
 
+    public static void clearTerminal() {
+        System.out.print("\33[H\033[2J");
+        System.out.flush();
+    }
+
     public static String getPiece(String message, String tryAgain) {
         Scanner userInput = new Scanner(System.in);
         System.out.println(message);
@@ -28,6 +33,7 @@ public class labTwoDD {
         for (PieceType myVar : PieceType.values()) {
             String curr = myVar.toString();
             if (curr.equals(piece)) {
+                clearTerminal();
                 return piece;
             }
         }
@@ -41,6 +47,7 @@ public class labTwoDD {
         for (PieceColor myVar : PieceColor.values()) {
             String curr = myVar.toString();
             if (curr.equals(color)) {
+                clearTerminal();
                 return color;
             }
         }
@@ -54,6 +61,7 @@ public class labTwoDD {
         for (Continue myVar : Continue.values()) {
             String curr = myVar.toString();
             if (curr.equals(color)) {
+                clearTerminal();
                 return color;
             }
         }
@@ -73,16 +81,17 @@ public class labTwoDD {
         }
 
         if (coordinateCheck.withinChessBoard(col, row)) {
+            clearTerminal();
             return chessCoordinates;
         }
         return getCoordinates(tryAgain, tryAgain);
     }
 
-    public static void printVerify(String pieceName, String col, String row, String target, Boolean valid){
+    public static void printVerify(String pieceName, String col, String row, String target, Boolean valid) {
         if (valid) {
-            System.out.println(pieceName+" at " + col + ", " + row + " can move to "+ target);
+            System.out.println(pieceName + " at " + col + ", " + row + " can move to " + target);
         } else {
-            System.out.println(pieceName+" at " + col + ", " + row + " can not move to "+ target);
+            System.out.println(pieceName + " at " + col + ", " + row + " can not move to " + target);
         }
     }
 
@@ -145,7 +154,7 @@ public class labTwoDD {
         if (gameAgain.equals("YES")) {
             game();
         } else {
-            System.out.println("game terminate thanks for playing  |_(-_-)_/");
+            System.out.println("game terminated thanks for playing  |_(-_-)_/");
         }
     }
 
