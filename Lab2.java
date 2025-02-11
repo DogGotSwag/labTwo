@@ -6,12 +6,12 @@ public class Lab2 {
     public static void main (String [] args) throws Exception {
 
         Scanner userInput = new Scanner(System.in);
-        char startletter = '\0';
-        int startnumber = -1;
-        char endletter = '\0';
-        int endnumber = -1;
-        String userpiece = "\0";
-        String usercolor = "\0";
+        char startLetter = '\0';
+        int startNumber = -1;
+        char endLetter = '\0';
+        int endNumber = -1;
+        String userPiece = "\0";
+        String userColor = "\0";
         String columns = "abcdefgh";
         String rows = "87654321";
 
@@ -22,11 +22,11 @@ public class Lab2 {
                 // Loop to get users piece
                 while (true) {
                     System.out.println("Please enter the piece you would like to move: (PAWN, ROOK, KNIGHT, BISHOP, QUEEN, and KING)");
-                    userpiece = userInput.nextLine();
+                    userPiece = userInput.nextLine();
 
-                    userpiece = userpiece.toLowerCase();
+                    userPiece = userPiece.toLowerCase();
                 
-                    if (userpiece.equals("pawn") || userpiece.equals("rook") || userpiece.equals("knight") || userpiece.equals("bishop") || userpiece.equals("queen") || userpiece.equals("king")) {
+                    if (userPiece.equals("pawn") || userPiece.equals("rook") || userPiece.equals("knight") || userPiece.equals("bishop") || userPiece.equals("queen") || userPiece.equals("king")) {
                         break;
                     
                     }
@@ -40,11 +40,11 @@ public class Lab2 {
                 // Loop to get users piece color
                 while (true) {
                     System.out.println("Please enter the color of your piece: (WHITE or BLACK)");
-                    usercolor = userInput.nextLine();
+                    userColor = userInput.nextLine();
 
-                    usercolor = usercolor.toLowerCase();
+                    userColor = userColor.toLowerCase();
 
-                    if (usercolor.equals("white") || usercolor.equals("black")) {
+                    if (userColor.equals("white") || userColor.equals("black")) {
                         break;
 
                     }
@@ -58,15 +58,15 @@ public class Lab2 {
                 // Loop to get users piece column
                 while (true) {
                     System.out.println("Please enter the column of your piece: (a - h)");
-                    String userstartcol = userInput.nextLine();
+                    String userStartCol = userInput.nextLine();
 
-                    userstartcol = userstartcol.toLowerCase();
+                    userStartCol = userStartCol.toLowerCase();
 
-                    if (userstartcol.length() == 1){
-                        char startcol = userstartcol.charAt(0);
+                    if (userStartCol.length() == 1){
+                        char startCol = userStartCol.charAt(0);
                             
-                        if ((startcol >= 'a' && startcol <= 'h')) {
-                            startletter = startcol;
+                        if ((startCol >= 'a' && startCol <= 'h')) {
+                            startLetter = startCol;
                             break;
 
                         }
@@ -87,17 +87,17 @@ public class Lab2 {
                 // Loop to get users piece row
                 while (true) {
                     System.out.println("Please enter the row of your piece: (1 - 8)");
-                    String userstartrow = userInput.nextLine();
+                    String userStartRow = userInput.nextLine();
 
-                    userstartrow = userstartrow.toLowerCase();
+                    userStartRow = userStartRow.toLowerCase();
 
-                    if (userstartrow.length() == 1) {
-                        char startrow = userstartrow.charAt(0);
+                    if (userStartRow.length() == 1) {
+                        char startRow = userStartRow.charAt(0);
 
-                        if (Character.isDigit(startrow)) {
-                            startnumber = Character.getNumericValue(startrow);
+                        if (Character.isDigit(startRow)) {
+                            startNumber = Character.getNumericValue(startRow);
 
-                            if (startnumber >= 1 && startnumber <= 8)
+                            if (startNumber >= 1 && startNumber <= 8)
                                 break;
 
                             else
@@ -128,15 +128,15 @@ public class Lab2 {
                 // Loop used to get users target position column
                 while (true) {
                     System.out.println("Please enter the column of your target position: (a - h)");
-                    String userendcol = userInput.nextLine();
+                    String userEndCol = userInput.nextLine();
 
-                    userendcol = userendcol.toLowerCase();
+                    userEndCol = userEndCol.toLowerCase();
 
-                    if (userendcol.length() == 1){
-                        char endcol = userendcol.charAt(0);
+                    if (userEndCol.length() == 1){
+                        char endCol = userEndCol.charAt(0);
                             
-                        if ((endcol >= 'a' && endcol <= 'h')) {
-                            endletter = endcol;
+                        if ((endCol >= 'a' && endCol <= 'h')) {
+                            endLetter = endCol;
                             break;
 
                         }
@@ -157,17 +157,17 @@ public class Lab2 {
                 // Loop used to get users target position row
                 while (true) {
                     System.out.println("Please enter the row of your target position: (1 - 8)");
-                    String userendrow = userInput.nextLine();
+                    String userEndRow = userInput.nextLine();
 
-                    userendrow = userendrow.toLowerCase();
+                    userEndRow = userEndRow.toLowerCase();
 
-                    if (userendrow.length() == 1) {
-                        char endrow = userendrow.charAt(0);
+                    if (userEndRow.length() == 1) {
+                        char endRow = userEndRow.charAt(0);
 
-                        if (Character.isDigit(endrow)) {
-                            endnumber = Character.getNumericValue(endrow);
+                        if (Character.isDigit(endRow)) {
+                            endNumber = Character.getNumericValue(endRow);
 
-                            if (endnumber >= 1 && endnumber <= 8)
+                            if (endNumber >= 1 && endNumber <= 8)
                                 break;
 
                             else
@@ -189,13 +189,13 @@ public class Lab2 {
 
                 }
 
-                if (startnumber == endnumber && startletter == endletter) {
+                if (startNumber == endNumber && startLetter == endLetter) {
                     System.out.println("Error! Your starting position and target position are the same");
 
                 }
 
                 else {
-                    switch (userpiece) {
+                    switch (userPiece) {
 
                         case "pawn":
                             break;
@@ -207,12 +207,12 @@ public class Lab2 {
                             break;
 
                         case "bishop":
-                            Bishop temp = new Bishop(userpiece, usercolor, startletter, startnumber);
+                            Bishop temp = new Bishop(userPiece, userColor, startLetter, startNumber);
 
                             int[][] availableCoordinates = temp.verifyTarget(temp.getColumn(), temp.getRow());
 
-                            int indexOne = rows.indexOf(String.valueOf(endnumber)); // We get the index coordinate of the move the user inputted
-                            int indexTwo = columns.indexOf(endletter);
+                            int indexOne = rows.indexOf(String.valueOf(endNumber)); // We get the index coordinate of the move the user inputted
+                            int indexTwo = columns.indexOf(endLetter);
 
                             int [] move = {indexOne, indexTwo};
 
@@ -226,10 +226,10 @@ public class Lab2 {
                             }
 
                             if (possible)
-                                System.out.println(userpiece + " at " + temp.getColumn() + ", " + temp.getRow() + " can move to " + endletter + ", " + endnumber);
+                                System.out.println(userPiece + " at " + temp.getColumn() + ", " + temp.getRow() + " can move to " + endLetter + ", " + endNumber);
 
                             else
-                                System.out.println(userpiece + " at " + temp.getColumn() + ", " + temp.getRow() + " can't move to " + endletter + ", " + endnumber);
+                                System.out.println(userPiece + " at " + temp.getColumn() + ", " + temp.getRow() + " can't move to " + endLetter + ", " + endNumber);
 
                             break;
 
@@ -242,11 +242,11 @@ public class Lab2 {
                     }
 
                     System.out.println("Would you like to verify another position for your piece using your original position: (YES or NO)");
-                    String switchtpos = userInput.nextLine();
+                    String switchPos = userInput.nextLine();
 
-                    switchtpos = switchtpos.toLowerCase();
+                    switchPos = switchPos.toLowerCase();
 
-                    if (switchtpos.equals("no"))
+                    if (switchPos.equals("no"))
                         break;
 
                 }
@@ -254,11 +254,11 @@ public class Lab2 {
             }
 
             System.out.println("Would you like to select another chess piece: (YES or NO)");
-            String switchpiece = userInput.nextLine();
+            String switchPiece = userInput.nextLine();
 
-            switchpiece = switchpiece.toLowerCase();
+            switchPiece = switchPiece.toLowerCase();
 
-            if (switchpiece.equals("no"))
+            if (switchPiece.equals("no"))
                 break;
 
         }
