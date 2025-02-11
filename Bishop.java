@@ -3,11 +3,32 @@ import java.util.Vector;
 
 //author Yahir Zapata
 
-public class Bishop {  //change class name
+public class Bishop { // change class name
     public String pieceName;
     public String color;
     public String column;
     public String row;
+
+    public Bishop() {
+        this.pieceName = "Bishop";
+        this.color = null;
+        this.column = null;
+        this.row = null;
+    }
+
+    public Bishop(String color, String col, String row) {
+        this.pieceName = "Bishop";
+        this.color = color.toLowerCase();
+        this.column = col.toLowerCase();
+        this.row = row;
+    }
+
+    public Bishop(String color, String col, String row, String pieceName) {
+        this.pieceName = pieceName;
+        this.color = color.toLowerCase();
+        this.column = col.toLowerCase();
+        this.row = row;
+    }
 
     public boolean inBounds(int[] coordinate) {
         int indexOne = coordinate[0];
@@ -36,7 +57,7 @@ public class Bishop {  //change class name
 
         int rows = numbers.indexOf(this.row);
         int cols = letters.indexOf(this.column);
-        
+
         int x = rows;
         int y = cols;
 
@@ -44,14 +65,14 @@ public class Bishop {  //change class name
             x = x + 1;
             y = y - 1;
 
-            int [] topLeft = {x, y};
+            int[] topLeft = { x, y };
 
             if (inBounds(topLeft) == true)
-            vector.add(topLeft);
+                vector.add(topLeft);
 
         }
 
-        //Top Right
+        // Top Right
         x = rows;
         y = cols;
 
@@ -59,14 +80,14 @@ public class Bishop {  //change class name
             x = x + 1;
             y = y + 1;
 
-            int [] topRight = {x, y};
+            int[] topRight = { x, y };
 
             if (inBounds(topRight) == true)
-            vector.add(topRight);
+                vector.add(topRight);
 
         }
 
-        //Bottom Left
+        // Bottom Left
         x = rows;
         y = cols;
 
@@ -74,14 +95,14 @@ public class Bishop {  //change class name
             x = x - 1;
             y = y - 1;
 
-            int [] bottomLeft = {x, y};
+            int[] bottomLeft = { x, y };
 
             if (inBounds(bottomLeft) == true)
-            vector.add(bottomLeft);
+                vector.add(bottomLeft);
 
         }
 
-        //Bottom Right
+        // Bottom Right
         x = rows;
         y = cols;
 
@@ -89,10 +110,10 @@ public class Bishop {  //change class name
             x = x - 1;
             y = y + 1;
 
-            int [] bottomRight = {x, y};
+            int[] bottomRight = { x, y };
 
             if (inBounds(bottomRight) == true)
-            vector.add(bottomRight);
+                vector.add(bottomRight);
 
         }
 
@@ -119,28 +140,7 @@ public class Bishop {  //change class name
         return this.color;
     }
 
-    public Bishop() {
-        this.pieceName = "Bishop";
-        this.color = null;
-        this.column = null;
-        this.row = null;
-    }
-
-    public Bishop(String color, String col, String row) {
-        this.pieceName = "Bishop";
-        this.color = color.toLowerCase();
-        this.column = col.toLowerCase();
-        this.row = row;
-    }
-
-    public Bishop(String color, String col, String row, String pieceName) {
-        this.pieceName = pieceName;
-        this.color = color.toLowerCase();
-        this.column = col.toLowerCase();
-        this.row = row;
-    }
-
-     public boolean verifyTarget(String column, String row) {
+    public boolean verifyTarget(String column, String row) {
         String letters = "abcdefgh";
         String numbers = "87654321";
         int attackRows = numbers.indexOf(row);

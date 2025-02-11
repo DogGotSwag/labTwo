@@ -10,6 +10,27 @@ public class Knight {
     public String column;
     public String row;
 
+    public Knight() {
+        this.pieceName = "Knight";
+        this.color = null;
+        this.column = null;
+        this.row = null;
+    }
+
+    public Knight(String color, String col, String row) {
+        this.pieceName = "Knight";
+        this.color = color.toLowerCase();
+        this.column = col.toLowerCase();
+        this.row = row;
+    }
+
+    public Knight(String color, String col, String row, String pieceName) {
+        this.pieceName = pieceName;
+        this.color = color.toLowerCase();
+        this.column = col.toLowerCase();
+        this.row = row;
+    }
+
     public boolean inBounds(int[] coordinate) {
         int indexOne = coordinate[0];
         int indexTwo = coordinate[1];
@@ -67,27 +88,6 @@ public class Knight {
             vector.add(bottomRight);
 
         return vectorToArray(vector);
-    }
-
-    public Knight() {
-        this.pieceName = "Knight";
-        this.color = null;
-        this.column = null;
-        this.row = null;
-    }
-
-    public Knight(String color, String col, String row) {
-        this.pieceName = "Knight";
-        this.color = color.toLowerCase();
-        this.column = col.toLowerCase();
-        this.row = row;
-    }
-
-    public Knight(String color, String col, String row, String pieceName) {
-        this.pieceName = pieceName;
-        this.color = color.toLowerCase();
-        this.column = col.toLowerCase();
-        this.row = row;
     }
 
     public void setColumn(String col) {

@@ -9,6 +9,27 @@ public class King { // change class name
     public String column;
     public String row;
 
+    public King() {
+        this.pieceName = "King";
+        this.color = null;
+        this.column = null;
+        this.row = null;
+    }
+
+    public King(String color, String col, String row) {
+        this.pieceName = "King";
+        this.color = color.toLowerCase();
+        this.column = col.toLowerCase();
+        this.row = row;
+    }
+
+    public King(String color, String col, String row, String pieceName) {
+        this.pieceName = pieceName;
+        this.color = color.toLowerCase();
+        this.column = col.toLowerCase();
+        this.row = row;
+    }
+
     public boolean inBounds(int[] coordinate) {
         int indexOne = coordinate[0];
         int indexTwo = coordinate[1];
@@ -103,26 +124,5 @@ public class King { // change class name
             }
         }
         return false;
-    }
-
-    public King() {
-        this.pieceName = "King";
-        this.color = null;
-        this.column = null;
-        this.row = null;
-    }
-
-    public King(String color, String col, String row) {
-        this.pieceName = "King";
-        this.color = color.toLowerCase();
-        this.column = col.toLowerCase();
-        this.row = row;
-    }
-
-    public King(String color, String col, String row, String pieceName) {
-        this.pieceName = pieceName;
-        this.color = color.toLowerCase();
-        this.column = col.toLowerCase();
-        this.row = row;
     }
 }

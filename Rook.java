@@ -7,6 +7,27 @@ public class Rook {
     public String column;
     public String row;
 
+    public Rook() {
+        this.pieceName = "Rook";
+        this.color = null;
+        this.column = null;
+        this.row = null;
+    }
+
+    public Rook(String color, String col, String row) {
+        this.pieceName = "Rook";
+        this.color = color.toLowerCase();
+        this.column = col.toLowerCase();
+        this.row = row;
+    }
+
+    public Rook(String color, String col, String row, String pieceName) {
+        this.pieceName = pieceName;
+        this.color = color.toLowerCase();
+        this.column = col.toLowerCase();
+        this.row = row;
+    }
+
     public boolean inBounds(int[] coordinate) {
         int indexOne = coordinate[0];
         int indexTwo = coordinate[1];
@@ -54,27 +75,6 @@ public class Rook {
 
         return vectorToArray(vector);
 
-    }
-
-    public Rook() {
-        this.pieceName = "Rook";
-        this.color = null;
-        this.column = null;
-        this.row = null;
-    }
-
-    public Rook(String color, String col, String row) {
-        this.pieceName = "Rook";
-        this.color = color.toLowerCase();
-        this.column = col.toLowerCase();
-        this.row = row;
-    }
-
-    public Rook(String color, String col, String row, String pieceName) {
-        this.pieceName = pieceName;
-        this.color = color.toLowerCase();
-        this.column = col.toLowerCase();
-        this.row = row;
     }
 
     public void setColumn(String col) {

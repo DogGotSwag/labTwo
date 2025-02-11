@@ -7,6 +7,27 @@ public class Pawn {
     public String column;
     public String row;
 
+    public Pawn() {
+        this.pieceName = "Pawn";
+        this.color = null;
+        this.column = null;
+        this.row = null;
+    }
+
+    public Pawn(String color, String col, String row) {
+        this.pieceName = "Pawn";
+        this.color = color.toLowerCase();
+        this.column = col.toLowerCase();
+        this.row = row;
+    }
+
+    public Pawn(String color, String col, String row, String pieceName) {
+        this.pieceName = pieceName;
+        this.color = color.toLowerCase();
+        this.column = col.toLowerCase();
+        this.row = row;
+    }
+
     public boolean inBounds(int[] coordinate) {
         int indexOne = coordinate[0];
         int indexTwo = coordinate[1];
@@ -43,29 +64,7 @@ public class Pawn {
         }
 
         return vectorToArray(vector);
-    }
-
-    // constructor
-    public Pawn() {
-        this.pieceName = "Pawn";
-        this.color = null;
-        this.column = null;
-        this.row = null;
-    }
-
-    public Pawn(String color, String col, String row) {
-        this.pieceName = "Pawn";
-        this.color = color.toLowerCase();
-        this.column = col.toLowerCase();
-        this.row = row;
-    }
-
-    public Pawn(String color, String col, String row, String pieceName) {
-        this.pieceName = pieceName;
-        this.color = color.toLowerCase();
-        this.column = col.toLowerCase();
-        this.row = row;
-    }
+    }    
 
     public void setColumn(String col) {
         this.column = col.toLowerCase();
