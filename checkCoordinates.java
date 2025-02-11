@@ -1,7 +1,8 @@
 public class checkCoordinates {
-    public checkCoordinates(){
+    public checkCoordinates() {
         ;
     }
+
     public boolean inBounds(int[] coordinate) {
         int indexOne = coordinate[0];
         int indexTwo = coordinate[1];
@@ -12,12 +13,12 @@ public class checkCoordinates {
         return true;
     }
 
-    public boolean withinChessBoard(String col, String row){
+    public boolean withinChessBoard(String col, String row) {
         String letters = "abcdefgh";
         String numbers = "87654321";
         int newRows = numbers.indexOf(row);
         int newCols = letters.indexOf(col.toLowerCase());
-        int[] coordinate = {newRows, newCols};
+        int[] coordinate = { newRows, newCols };
         return inBounds(coordinate);
     }
 }

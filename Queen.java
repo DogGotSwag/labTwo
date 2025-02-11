@@ -9,43 +9,44 @@ public class Queen {
     public String column;
     public String row;
 
-    public Queen(){
-      this.pieceName = "Queen";
-      this.color = null;
-      this.column = null;
-      this.row = null;
+    public Queen() {
+        this.pieceName = "Queen";
+        this.color = null;
+        this.column = null;
+        this.row = null;
     }
 
-    public Queen(String color, String col, String row){
-      this.pieceName = "Queen";
-      this.color = color.toLowerCase();
-      this.column = col.toLowerCase();
-      this.row = row;
-    }
-
-    public Queen(String color, String col, String row, String pieceName){
-      this.pieceName = pieceName;
-      this.color = color.toLowerCase();
-      this.column = col.toLowerCase();
-      this.row = row;
-    }
-
-    public void setColumn(String col){
+    public Queen(String color, String col, String row) {
+        this.pieceName = "Queen";
+        this.color = color.toLowerCase();
         this.column = col.toLowerCase();
-    }
-    public void setRow(String row){
         this.row = row;
     }
 
-    public String getColumn(){
+    public Queen(String color, String col, String row, String pieceName) {
+        this.pieceName = pieceName;
+        this.color = color.toLowerCase();
+        this.column = col.toLowerCase();
+        this.row = row;
+    }
+
+    public void setColumn(String col) {
+        this.column = col.toLowerCase();
+    }
+
+    public void setRow(String row) {
+        this.row = row;
+    }
+
+    public String getColumn() {
         return this.column;
     }
 
-    public String getRow(){
+    public String getRow() {
         return this.row;
     }
 
-    public String getColor(){
+    public String getColor() {
         return this.color;
     }
 
@@ -77,7 +78,7 @@ public class Queen {
         int rows = numbers.indexOf(this.row);
         int cols = letters.indexOf(this.column);
 
-        //up down left right
+        // up down left right
         for (int i = cols - 1; i >= 0; i -= 1) {
             int[] left = { rows, i };
             vector.add(left);
@@ -95,7 +96,7 @@ public class Queen {
             vector.add(down);
         }
 
-        //diagonal movement
+        // diagonal movement
         int copyRows = rows - 1;
         int copyCols = cols + 1;
         while (copyRows >= 0 && copyCols <= 7) {
@@ -135,18 +136,18 @@ public class Queen {
         return vectorToArray(vector);
     }
 
-    public boolean verifyTarget(String column, String row){
+    public boolean verifyTarget(String column, String row) {
         String letters = "abcdefgh";
         String numbers = "87654321";
         int attackRows = numbers.indexOf(row);
         int attackCols = letters.indexOf(column.toLowerCase());
 
-        int[] attackPosition = {attackRows, attackCols}; 
-        int [][] availableCoordinates = this.generateCoordinates();
+        int[] attackPosition = { attackRows, attackCols };
+        int[][] availableCoordinates = this.generateCoordinates();
 
-        for(int i = 0; i < availableCoordinates.length; i +=1){
-            int [] curr = availableCoordinates[i];
-            if( Arrays.equals(curr, attackPosition)){
+        for (int i = 0; i < availableCoordinates.length; i += 1) {
+            int[] curr = availableCoordinates[i];
+            if (Arrays.equals(curr, attackPosition)) {
                 return true;
             }
         }

@@ -2,7 +2,7 @@ import java.util.Vector;
 
 //author Yahir Zapata
 
-public class Bishop {  //change class name
+public class Bishop { // change class name
     private String piece_name;
     private String color;
     private char column;
@@ -74,7 +74,7 @@ public class Bishop {  //change class name
         int indexOne = rows.indexOf(position.split("")[1]);
         int indexTwo = columns.indexOf(position.split("")[0]);
 
-        //Top Left
+        // Top Left
         int x = indexOne;
         int y = indexTwo;
 
@@ -82,14 +82,14 @@ public class Bishop {  //change class name
             x = x + 1;
             y = y - 1;
 
-            int [] topLeft = {x, y};
+            int[] topLeft = { x, y };
 
             if (inBounds(topLeft) == true)
-            vector.add(topLeft);
+                vector.add(topLeft);
 
         }
 
-        //Top Right
+        // Top Right
         x = indexOne;
         y = indexTwo;
 
@@ -97,14 +97,14 @@ public class Bishop {  //change class name
             x = x + 1;
             y = y + 1;
 
-            int [] topRight = {x, y};
+            int[] topRight = { x, y };
 
             if (inBounds(topRight) == true)
-            vector.add(topRight);
+                vector.add(topRight);
 
         }
 
-        //Bottom Left
+        // Bottom Left
         x = indexOne;
         y = indexTwo;
 
@@ -112,14 +112,14 @@ public class Bishop {  //change class name
             x = x - 1;
             y = y - 1;
 
-            int [] bottomLeft = {x, y};
+            int[] bottomLeft = { x, y };
 
             if (inBounds(bottomLeft) == true)
-            vector.add(bottomLeft);
+                vector.add(bottomLeft);
 
         }
 
-        //Bottom Right
+        // Bottom Right
         x = indexOne;
         y = indexTwo;
 
@@ -127,15 +127,15 @@ public class Bishop {  //change class name
             x = x - 1;
             y = y + 1;
 
-            int [] bottomRight = {x, y};
+            int[] bottomRight = { x, y };
 
             if (inBounds(bottomRight) == true)
-            vector.add(bottomRight);
+                vector.add(bottomRight);
 
         }
 
         return vectorToArray(vector);
-        
+
     }
 
 }
