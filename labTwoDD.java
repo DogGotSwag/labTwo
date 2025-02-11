@@ -21,46 +21,46 @@ public class labTwoDD {
         NO
     }
 
-    public static String getPiece(String message, String tryAgain){
+    public static String getPiece(String message, String tryAgain) {
         Scanner userInput = new Scanner(System.in);
         System.out.println(message);
         String piece = userInput.nextLine().toUpperCase();
-        for( PieceType myVar: PieceType.values()){
-           String curr = myVar.toString();
-           if(curr.equals(piece)){
-            return piece;
-           }
+        for (PieceType myVar : PieceType.values()) {
+            String curr = myVar.toString();
+            if (curr.equals(piece)) {
+                return piece;
+            }
         }
         return getPiece(tryAgain, tryAgain);
     }
 
-    public static String getColor(String message, String tryAgain){
+    public static String getColor(String message, String tryAgain) {
         Scanner userInput = new Scanner(System.in);
         System.out.println(message);
         String color = userInput.nextLine().toUpperCase();
-        for( PieceColor myVar: PieceColor.values()){
-           String curr = myVar.toString();
-           if(curr.equals(color)){
-            return color;
-           }
+        for (PieceColor myVar : PieceColor.values()) {
+            String curr = myVar.toString();
+            if (curr.equals(color)) {
+                return color;
+            }
         }
         return getColor(tryAgain, tryAgain);
     }
 
-    public static String getContinue(String message, String tryAgain){
+    public static String getContinue(String message, String tryAgain) {
         Scanner userInput = new Scanner(System.in);
         System.out.println(message);
         String color = userInput.nextLine().toUpperCase();
-        for( Continue myVar: Continue.values()){
-           String curr = myVar.toString();
-           if(curr.equals(color)){
-            return color;
-           }
+        for (Continue myVar : Continue.values()) {
+            String curr = myVar.toString();
+            if (curr.equals(color)) {
+                return color;
+            }
         }
-        return getColor(tryAgain, tryAgain);
+        return getContinue(tryAgain, tryAgain);
     }
 
-    public static String getCoordinates(String message, String tryAgain){
+    public static String getCoordinates(String message, String tryAgain) {
         checkCoordinates coordinateCheck = new checkCoordinates();
         Scanner userInput = new Scanner(System.in);
         System.out.println(message);
@@ -68,37 +68,47 @@ public class labTwoDD {
         String col = chessCoordinates.split("")[0];
         String row = chessCoordinates.split("")[1];
 
-        if(chessCoordinates.length() != 2){
-           return getCoordinates("must be two characters", tryAgain);
+        if (chessCoordinates.length() != 2) {
+            return getCoordinates("must be two characters", tryAgain);
         }
 
-        if(coordinateCheck.withinChessBoard(col, row)){
+        if (coordinateCheck.withinChessBoard(col, row)) {
             return chessCoordinates;
         }
         return getCoordinates(tryAgain, tryAgain);
     }
 
-    public static void verifyTarget(String piece, String target, String color, String coordinates){
+    public static void printVerify(String pieceName, String col, String row, String target, Boolean valid){
+        if (valid) {
+            System.out.println(pieceName+" at " + col + ", " + row + " can move to "+ target);
+        } else {
+            System.out.println(pieceName+" at " + col + ", " + row + " can not move to "+ target);
+        }
+    }
+
+    public static void verifyTarget(String piece, String target, String color, String coordinates) {
         String coordinateCol = coordinates.split("")[0];
         String coordinateRow = coordinates.split("")[1];
         String targetCol = target.split("")[0];
         String targetRow = target.split("")[1];
-        switch(piece){
+        boolean canAttack;
+        switch (piece) {
             case "KING":
+                King kingTemp = new King(color, coordinateCol, coordinateRow);
+                canAttack = kingTemp.verifyTarget(targetCol, targetRow);
+                printVerify(piece, kingTemp.getColumn(), kingTemp.getRow(), target, canAttack);
                 break;
             case "QUEEN":
-                Queen realQueen = new Queen(color, coordinateCol, coordinateRow);
-                boolean canAttack = realQueen.verifyTarget(targetCol, targetRow);
-                 if(canAttack){
-                    System.out.println("Queen at " + realQueen.getColumn() + ", " + realQueen.getRow() + " can move to " + target);
-                 }else {
-                    System.out.println("Queen at " + realQueen.getColumn() + ", " + realQueen.getRow() + " can not move to " + target);
-                 }
-
+                Queen queenTemp = new Queen(color, coordinateCol, coordinateRow);
+                canAttack = queenTemp.verifyTarget(targetCol, targetRow);
+                printVerify(piece, queenTemp.getColumn(), queenTemp.getRow(), target, canAttack);
                 break;
             case "ROOK":
                 break;
-            case "Knight":
+            case "KNIGHT":
+                Knight knightTemp = new Knight(color, coordinateCol, coordinateRow);
+                canAttack = knightTemp.verifyTarget(targetCol, targetRow);
+                printVerify(piece, knightTemp.getColumn(), knightTemp.getRow(), target, canAttack);
                 break;
             case "PAWN":
                 break;
@@ -106,14 +116,15 @@ public class labTwoDD {
                 break;
         }
 
-        String verifyAgain = getContinue("interested in verifying another target position using the same original position", "yes or no only");
-        if(verifyAgain.equals("YES")){
+        String verifyAgain = getContinue(
+                "interested in verifying another target position using the same original position", "yes or no only");
+        if (verifyAgain.equals("YES")) {
             String newTarget = getCoordinates("target coordinates", "try again");
             verifyTarget(piece, newTarget, color, coordinates);
         }
     }
 
-    public static void game(){
+    public static void game() {
         String piece = getPiece("Which Piece", "try again");
         String color = getColor("which color", "try again");
         String coordinates = getCoordinates("chess coordinates", "try again plz");
@@ -122,10 +133,9 @@ public class labTwoDD {
         verifyTarget(piece, target, color, coordinates);
 
         String gameAgain = getContinue("interested in selecting another chess piece", "yes or no only");
-        if(gameAgain.equals("YES")){
+        if (gameAgain.equals("YES")) {
             game();
-        }
-        else{
+        } else {
             System.out.println("game terminate thanks for playing  |_(-_-)_/");
         }
     }

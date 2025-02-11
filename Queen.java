@@ -153,8 +153,4 @@ public class Queen {
         }
         return false;
     }
-
-    public static void main(String[] args) {
-        Queen test = new Queen("white", "e", "4");
-    }
 }
